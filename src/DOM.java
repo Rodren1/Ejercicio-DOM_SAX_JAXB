@@ -1,5 +1,8 @@
 
+import com.sun.org.apache.xml.internal.serialize.OutputFormat;
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import java.io.File;
+import java.io.FileOutputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -94,10 +97,10 @@ public class DOM {
         try {
             //se crea un nodo tipo Element con nombre titulo(<Titulo>)
             Node ntitulo = doc.createElement("Titulo");
-            
+
             //se crea un nodo tipo texto con el titulo del libro
             Node ntitulo_text = doc.createTextNode(titulo);
-            
+
             //se añade eñ nodo de tecto con el titulo como hijo del elemento Titulo
             ntitulo.appendChild(ntitulo_text);
 
@@ -108,10 +111,10 @@ public class DOM {
 
             //se crea un nodo de tipo elemento (<Libro>)
             Node nlibro = doc.createElement("Libro");
-            
+
             //le añado un atributo al nodo elemento libro
             ((Element) nlibro).setAttribute("publicado_en", fecha);
-            
+
             //le añado dos nodos hijos (titulo y autor)
             nlibro.appendChild(ntitulo);
             nlibro.appendChild(nautor);
@@ -120,6 +123,63 @@ public class DOM {
             Node raiz = doc.getFirstChild();
             raiz.appendChild(nlibro);
 
+            return 0;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    public int guardarDOM() {
+        try {
+            File archivo_xml = new File("salida.xml"); //crea un fichero XML
+
+            OutputFormat format = new OutputFormat(doc); //especifica el formato de salida
+
+            format.setIndenting(true); //especifica que la salida esta indentada
+
+            //escribe el contenido en el File
+            XMLSerializer serializer = new XMLSerializer(new FileOutputStream(archivo_xml), format);
+            serializer.serialize(doc);
+
+            return 0;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    public int modificarTituloDOM(String tAntiguo, String tNuevo) {
+
+        try {
+            for (int j = 0; j < 3; j++) {
+                Node nodoTitulo = doc.getElementsByTagName("Titulo").item(j);
+                NodeList nodeList = nodoTitulo.getChildNodes();
+                if (j == 0) {
+                    if (nodoTitulo.getNodeType() == Node.ELEMENT_NODE) {
+                        if ("Titulo".equals(nodoTitulo.getNodeName())) {
+                            if (tAntiguo.equals(nodoTitulo.getTextContent())) {
+                                nodoTitulo.setTextContent(tNuevo);
+                            }
+                        }
+                    }
+
+                } else if (j == 1) {
+                    if (nodoTitulo.getNodeType() == Node.ELEMENT_NODE) {
+                        if ("Titulo".equals(nodoTitulo.getNodeName())) {
+                            if (tAntiguo.equals(nodoTitulo.getTextContent())) {
+                                nodoTitulo.setTextContent(tNuevo);
+                            }
+                        }
+                    }
+                } else {
+                    if (nodoTitulo.getNodeType() == Node.ELEMENT_NODE) {
+                        if ("Titulo".equals(nodoTitulo.getNodeName())) {
+                            if (tAntiguo.equals(nodoTitulo.getTextContent())) {
+                                nodoTitulo.setTextContent(tNuevo);
+                            }
+                        }
+                    }
+                }
+            }
             return 0;
         } catch (Exception e) {
             return -1;

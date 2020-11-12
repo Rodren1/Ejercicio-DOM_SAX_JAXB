@@ -24,6 +24,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonMostrarSAX.setEnabled(false);
         jButtonMostrarJAXB.setEnabled(false);
         jButtonAñadirDOM.setEnabled(false);
+        jButtonGuardarDOM.setEnabled(false);
     }
 
     /**
@@ -48,6 +49,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextFieldPublicado = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaMostrado = new javax.swing.JTextArea();
+        jButtonGuardarDOM = new javax.swing.JButton();
+        jTextFieldTituloAntiguo = new javax.swing.JTextField();
+        jTextFieldTituloNuevo = new javax.swing.JTextField();
+        jLabelTituloAntiguo = new javax.swing.JLabel();
+        jLabelTituloNuevo = new javax.swing.JLabel();
+        jButtonModificarDOM = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuFicherosXML = new javax.swing.JMenu();
         jMenuItemAbrirDOM = new javax.swing.JMenuItem();
@@ -86,6 +93,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextAreaMostrado.setRows(5);
         jScrollPane1.setViewportView(jTextAreaMostrado);
 
+        jButtonGuardarDOM.setText("Guardar DOM");
+        jButtonGuardarDOM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarDOMActionPerformed(evt);
+            }
+        });
+
+        jLabelTituloAntiguo.setText("Título antiguo");
+
+        jLabelTituloNuevo.setText("Título nuevo");
+
+        jButtonModificarDOM.setText("Modificar");
+        jButtonModificarDOM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarDOMActionPerformed(evt);
+            }
+        });
+
         jMenuFicherosXML.setText("Ficheros XML");
 
         jMenuItemAbrirDOM.setText("Abrir DOM");
@@ -123,7 +148,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(0, 289, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelTitulo)
@@ -138,7 +163,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldPublicado, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonAñadirDOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(jButtonAñadirDOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabelTituloNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldTituloNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabelTituloAntiguo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldTituloAntiguo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonModificarDOM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonGuardarDOM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -152,8 +190,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jButtonMostrarJAXB)
                     .addComponent(jButtonMostrarSAX))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelTitulo)
@@ -166,8 +206,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelPublicado)
                             .addComponent(jTextFieldPublicado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonAñadirDOM))))
-                .addContainerGap())
+                            .addComponent(jButtonAñadirDOM))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonGuardarDOM)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelTituloAntiguo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldTituloAntiguo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldTituloNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelTituloNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonModificarDOM)
+                        .addGap(61, 61, 61))))
         );
 
         pack();
@@ -186,6 +238,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 this.jLabelMensaje.setText("Objeto DOM creado");
                 jButtonMostrarDOM.setEnabled(true);
                 jButtonAñadirDOM.setEnabled(true);
+                jButtonGuardarDOM.setEnabled(true);
             }
         }
     }//GEN-LAST:event_jMenuItemAbrirDOMActionPerformed
@@ -204,6 +257,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             this.jLabelMensaje.setText("Nodo añadido correctamente");
         }
     }//GEN-LAST:event_jButtonAñadirDOMActionPerformed
+
+    private void jButtonGuardarDOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarDOMActionPerformed
+        if(gesDOM.guardarDOM() == -1){
+            jLabelMensaje.setText("Error al guardar el fichero");
+        } else{
+            jLabelMensaje.setText("Fichero guardado correctamente");
+        }
+    }//GEN-LAST:event_jButtonGuardarDOMActionPerformed
+
+    private void jButtonModificarDOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarDOMActionPerformed
+        if(gesDOM.modificarTituloDOM(this.jTextFieldTituloAntiguo.getText(), this.jTextFieldTituloNuevo.getText()) == -1){
+            jLabelMensaje.setText("Error al modificar el DOM");
+        }else{
+            jLabelMensaje.setText("Modificación del DOM correcta");
+        }
+    }//GEN-LAST:event_jButtonModificarDOMActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,6 +311,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAñadirDOM;
+    private javax.swing.JButton jButtonGuardarDOM;
+    private javax.swing.JButton jButtonModificarDOM;
     private javax.swing.JButton jButtonMostrarDOM;
     private javax.swing.JButton jButtonMostrarJAXB;
     private javax.swing.JButton jButtonMostrarSAX;
@@ -249,6 +320,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelMensaje;
     private javax.swing.JLabel jLabelPublicado;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLabelTituloAntiguo;
+    private javax.swing.JLabel jLabelTituloNuevo;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuFicherosXML;
     private javax.swing.JMenuItem jMenuItemAbrirDOM;
@@ -259,6 +332,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldAutor;
     private javax.swing.JTextField jTextFieldPublicado;
     private javax.swing.JTextField jTextFieldTitulo;
+    private javax.swing.JTextField jTextFieldTituloAntiguo;
+    private javax.swing.JTextField jTextFieldTituloNuevo;
     // End of variables declaration//GEN-END:variables
 
     private File dialogoSeleccionarFichero() {
