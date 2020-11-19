@@ -148,11 +148,13 @@ public class DOM {
     }
 
     public int modificarTituloDOM(String tAntiguo, String tNuevo) {
-
+        /*
         try {
+            //el bucle for recorre los 3 libros en busca del que coincida con el titulo que hemos introducido como titulo antiguo(tAntiguo)
             for (int j = 0; j < 3; j++) {
-                Node nodoTitulo = doc.getElementsByTagName("Titulo").item(j);
-                NodeList nodeList = nodoTitulo.getChildNodes();
+                Node nodoTitulo = doc.getElementsByTagName("Titulo").item(j); //creo un node que guarda los nodos Titulo
+                //mediante ifs busco en los tres libros el que tenga el mismo titulo introducido como parametro de busqueda 
+                //y cuando lo encuentra lo cambia por el titulo nuevo
                 if (j == 0) {
                     if (nodoTitulo.getNodeType() == Node.ELEMENT_NODE) {
                         if ("Titulo".equals(nodoTitulo.getNodeName())) {
@@ -184,6 +186,43 @@ public class DOM {
         } catch (Exception e) {
             return -1;
         }
+        */
+        
+        String tAux = "";
+        Node raiz = doc.getFirstChild();
+
+        NodeList listaLibros = raiz.getChildNodes();
+
+        try {
+            for (int i = 0; i < listaLibros.getLength(); i++) {
+                Node nodoLibro = listaLibros.item(i);
+                if (nodoLibro.getNodeType() == Node.ELEMENT_NODE) {
+                    //obtiene los hijos del libro
+                    NodeList nodosTituloAutor = nodoLibro.getChildNodes();
+
+                    for (int j = 0; j < nodosTituloAutor.getLength(); j++) {
+                        Node nodoTemp = nodosTituloAutor.item(j);
+                        //compruebo si es el titulo
+                        if (nodoTemp.getNodeType() == Node.ELEMENT_NODE && nodoTemp.getNodeName() == "Titulo") {
+                            tAux = nodoTemp.getChildNodes().item(0).getNodeValue();
+
+                            if (tAux.equals(tAntiguo)) {
+                                Node nTitulo = doc.createElement("Titulo");
+                                Node nTitulo_text = doc.createTextNode(tNuevo);
+                                nTitulo.appendChild(nTitulo_text);
+                                nodoLibro.replaceChild(nTitulo, nodoTemp);
+                            }
+                        }
+                    }
+                }
+            }
+            return 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        
+         
     }
 
 }
