@@ -14,7 +14,7 @@ import javax.swing.JFileChooser;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     DOM gesDOM = new DOM();
-    SAX gesSax = new SAX();
+    SAX gesSAX = new SAX();
 
     /**
      * Creates new form VentanaPrincipal
@@ -75,6 +75,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonMostrarJAXB.setText("Mostrar JAXB");
 
         jButtonMostrarSAX.setText("Mostrar SAX");
+        jButtonMostrarSAX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarSAXActionPerformed(evt);
+            }
+        });
 
         jButtonAñadirDOM.setText("Añadir");
         jButtonAñadirDOM.addActionListener(new java.awt.event.ActionListener() {
@@ -311,6 +316,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jMenuItemAbrirSAXActionPerformed
+
+    private void jButtonMostrarSAXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarSAXActionPerformed
+        String salida = gesSAX.recorrerSAX();
+        jTextAreaMostrado.setText(salida);
+    }//GEN-LAST:event_jButtonMostrarSAXActionPerformed
 
     /**
      * @param args the command line arguments

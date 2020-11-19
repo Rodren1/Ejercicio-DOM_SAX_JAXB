@@ -209,6 +209,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Mostrar SAX"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMostrarSAXActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonA&#xf1;adirDOM">
       <Properties>
