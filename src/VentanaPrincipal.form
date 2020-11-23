@@ -29,6 +29,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Abrir JAXB"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAbrirJAXBActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -112,7 +115,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabelTituloNuevo" min="-2" pref="85" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextFieldTituloNuevo" pref="101" max="32767" attributes="0"/>
+                                          <Component id="jTextFieldTituloNuevo" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabelTituloAntiguo" min="-2" pref="85" max="-2" attributes="0"/>
@@ -204,6 +207,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Mostrar JAXB"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMostrarJAXBActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonMostrarSAX">
       <Properties>

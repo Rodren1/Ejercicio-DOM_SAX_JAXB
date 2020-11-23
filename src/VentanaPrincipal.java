@@ -15,6 +15,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     DOM gesDOM = new DOM();
     SAX gesSAX = new SAX();
+    JAXB gesJAXB = new JAXB();
 
     /**
      * Creates new form VentanaPrincipal
@@ -22,11 +23,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         jButtonMostrarDOM.setEnabled(false);
-        jButtonMostrarJAXB.setEnabled(false);
-        jButtonMostrarSAX.setEnabled(false);
         jButtonAñadirDOM.setEnabled(false);
         jButtonGuardarDOM.setEnabled(false);
         jButtonModificarDOM.setEnabled(false);
+        jButtonMostrarSAX.setEnabled(false);
+        jButtonMostrarJAXB.setEnabled(false);
     }
 
     /**
@@ -73,6 +74,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         jButtonMostrarJAXB.setText("Mostrar JAXB");
+        jButtonMostrarJAXB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarJAXBActionPerformed(evt);
+            }
+        });
 
         jButtonMostrarSAX.setText("Mostrar SAX");
         jButtonMostrarSAX.addActionListener(new java.awt.event.ActionListener() {
@@ -137,6 +143,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuFicherosXML.add(jMenuItemAbrirSAX);
 
         jMenuItemAbrirJAXB.setText("Abrir JAXB");
+        jMenuItemAbrirJAXB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAbrirJAXBActionPerformed(evt);
+            }
+        });
         jMenuFicherosXML.add(jMenuItemAbrirJAXB);
 
         jMenuBar1.add(jMenuFicherosXML);
@@ -191,7 +202,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabelTituloNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextFieldTituloNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+                                            .addComponent(jTextFieldTituloNuevo))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabelTituloAntiguo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -263,6 +274,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jButtonAñadirDOM.setEnabled(true);
                 jButtonGuardarDOM.setEnabled(true);
                 jButtonModificarDOM.setEnabled(true);
+                jButtonMostrarSAX.setEnabled(false);
+                jButtonMostrarJAXB.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jMenuItemAbrirDOMActionPerformed
@@ -301,7 +314,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonModificarDOMActionPerformed
 
     private void jMenuItemAbrirSAXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAbrirSAXActionPerformed
-        
+
         File ficheroXML;
         ficheroXML = dialogoSeleccionarFichero();
 
@@ -313,6 +326,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             } else {
                 this.jLabelMensaje.setText("Objeto SAX creado");
                 jButtonMostrarSAX.setEnabled(true);
+                jButtonMostrarDOM.setEnabled(false);
+                jButtonAñadirDOM.setEnabled(false);
+                jButtonGuardarDOM.setEnabled(false);
+                jButtonModificarDOM.setEnabled(false);
+                jButtonMostrarJAXB.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jMenuItemAbrirSAXActionPerformed
@@ -321,6 +339,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String salida = gesSAX.recorrerSAX();
         jTextAreaMostrado.setText(salida);
     }//GEN-LAST:event_jButtonMostrarSAXActionPerformed
+
+    private void jMenuItemAbrirJAXBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAbrirJAXBActionPerformed
+        File ficheroXML;
+        ficheroXML = dialogoSeleccionarFichero();
+
+        if (ficheroXML == null) {
+            this.jLabelMensaje.setText("Error en la seleccion del fichero");
+        } else {
+            if (gesJAXB.abrir_XML_JAXB(ficheroXML) == -1) {
+                this.jLabelMensaje.setText("Error al crear el objeto JAXB");
+            } else {
+                this.jLabelMensaje.setText("Objeto JAXB creado");
+                jButtonMostrarJAXB.setEnabled(true);
+                jButtonMostrarSAX.setEnabled(false);
+                jButtonMostrarDOM.setEnabled(false);
+                jButtonAñadirDOM.setEnabled(false);
+                jButtonGuardarDOM.setEnabled(false);
+                jButtonModificarDOM.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_jMenuItemAbrirJAXBActionPerformed
+
+    private void jButtonMostrarJAXBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarJAXBActionPerformed
+        String salida = gesJAXB.recorrerJAXB();
+        jTextAreaMostrado.setText(salida);
+    }//GEN-LAST:event_jButtonMostrarJAXBActionPerformed
 
     /**
      * @param args the command line arguments
