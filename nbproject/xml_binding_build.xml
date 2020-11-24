@@ -18,8 +18,8 @@
                 <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
             </classpath>
             <arg value="-xmlschema"/>
-            <schema file="xml-resources/jaxb/javaLibros_binding/LibrosEsquemas.xsd"/>
-            <depends file="xml-resources/jaxb/javaLibros_binding/LibrosEsquemas.xsd"/>
+            <schema file="xml-resources/jaxb/javaLibros_binding/LibrosEsquema.xsd"/>
+            <depends file="xml-resources/jaxb/javaLibros_binding/LibrosEsquema.xsd"/>
             <produces dir="build/generated/jaxbCache/javaLibros_binding"/>
         </xjc>
         <copy todir="${build.generated.sources.dir}/jaxb">

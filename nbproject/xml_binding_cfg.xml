@@ -4,7 +4,7 @@
 		<xjc-options>
 		</xjc-options>
 		<schema-sources>
-			<schema-source location='xml-resources/jaxb/javaLibros_binding/LibrosEsquemas.xsd' origLocation='../../../../../LibrosEsquemas.xsd'/>
+			<schema-source location='xml-resources/jaxb/javaLibros_binding/LibrosEsquema.xsd' origLocation='../../../../../Archivos XML/LibrosEsquema.xsd'/>
 		</schema-sources>
 		<bindings>
 		</bindings>

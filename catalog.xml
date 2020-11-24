@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="file:/C:/Users/Javi/Documents/DAM2/Acceso%20a%20Datos/3.%20DOM%20y%20SAX/Tarea%20DOM%20SAX%20JAXB%20XPATH/DOM_SAX_JAXB/../../../../../LibrosEsquemas.xsd" uri="xml-resources/jaxb/javaLibros_binding/LibrosEsquemas.xsd"/>
+    <system systemId="file:/C:/Users/Javi/Documents/DAM2/Acceso%20a%20Datos/3.%20DOM%20y%20SAX/Tarea%20DOM%20SAX%20JAXB%20XPATH/DOM_SAX_JAXB/../../../../../Archivos%20XML/LibrosEsquemas.xsd" uri="xml-resources/jaxb/javaLibros_binding/LibrosEsquemas.xsd"/>
+    <system systemId="file:/C:/Users/Javi/Documents/DAM2/Acceso%20a%20Datos/3.%20DOM%20y%20SAX/Tarea%20DOM%20SAX%20JAXB%20XPATH/DOM_SAX_JAXB/../../../../../Archivos%20XML/LibrosEsquema.xsd" uri="xml-resources/jaxb/javaLibros_binding/LibrosEsquema.xsd"/>
 </catalog>
