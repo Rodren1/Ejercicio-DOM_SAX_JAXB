@@ -16,6 +16,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     DOM gesDOM = new DOM();
     SAX gesSAX = new SAX();
     JAXB gesJAXB = new JAXB();
+    Gestionar_Xpath gesXpath = new Gestionar_Xpath();
 
     /**
      * Creates new form VentanaPrincipal
@@ -28,6 +29,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonModificarDOM.setEnabled(false);
         jButtonMostrarSAX.setEnabled(false);
         jButtonMostrarJAXB.setEnabled(false);
+        jButtonEjecutar.setEnabled(false);
     }
 
     /**
@@ -58,11 +60,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabelTituloAntiguo = new javax.swing.JLabel();
         jLabelTituloNuevo = new javax.swing.JLabel();
         jButtonModificarDOM = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextConsultaXPath = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextSalidaXPath = new javax.swing.JTextArea();
+        jLabelXPath = new javax.swing.JLabel();
+        jButtonEjecutar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuFicherosXML = new javax.swing.JMenu();
         jMenuItemAbrirDOM = new javax.swing.JMenuItem();
         jMenuItemAbrirSAX = new javax.swing.JMenuItem();
         jMenuItemAbrirJAXB = new javax.swing.JMenuItem();
+        jMenuItemAbrirXPath = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +133,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jTextConsultaXPath.setColumns(20);
+        jTextConsultaXPath.setRows(5);
+        jScrollPane2.setViewportView(jTextConsultaXPath);
+
+        jTextSalidaXPath.setColumns(20);
+        jTextSalidaXPath.setRows(5);
+        jScrollPane3.setViewportView(jTextSalidaXPath);
+
+        jLabelXPath.setText("Escriba la consulta XPATH");
+
+        jButtonEjecutar.setText("Ejecutar");
+        jButtonEjecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEjecutarActionPerformed(evt);
+            }
+        });
+
         jMenuFicherosXML.setText("Ficheros XML");
 
         jMenuItemAbrirDOM.setText("Abrir DOM");
@@ -150,6 +176,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenuFicherosXML.add(jMenuItemAbrirJAXB);
 
+        jMenuItemAbrirXPath.setText("Abrir XPath");
+        jMenuItemAbrirXPath.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAbrirXPathActionPerformed(evt);
+            }
+        });
+        jMenuFicherosXML.add(jMenuItemAbrirXPath);
+
         jMenuBar1.add(jMenuFicherosXML);
 
         setJMenuBar(jMenuBar1);
@@ -168,46 +202,58 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonMostrarSAX, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButtonMostrarJAXB, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButtonMostrarJAXB, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButtonAñadirDOM, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonGuardarDOM, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jLabelTitulo)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jLabelAutor)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jTextFieldAutor)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelPublicado)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jLabelTitulo)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jLabelAutor)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(jTextFieldAutor)))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabelPublicado)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jTextFieldPublicado, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(66, 66, 66))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jButtonAñadirDOM, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextFieldPublicado, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(66, 66, 66)))
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jButtonGuardarDOM, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(25, 25, 25)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jButtonModificarDOM))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabelTituloNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jTextFieldTituloNuevo))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabelTituloAntiguo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jTextFieldTituloAntiguo)))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButtonModificarDOM))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabelTituloNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextFieldTituloNuevo))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabelTituloAntiguo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextFieldTituloAntiguo))))))
-                        .addGap(40, 40, 40))
+                                        .addGap(11, 11, 11)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButtonEjecutar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(jLabelXPath, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(16, 16, 16))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -252,7 +298,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonGuardarDOM)
-                            .addComponent(jButtonAñadirDOM))))
+                            .addComponent(jButtonAñadirDOM))
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabelXPath, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonEjecutar))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -276,6 +330,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jButtonModificarDOM.setEnabled(true);
                 jButtonMostrarSAX.setEnabled(false);
                 jButtonMostrarJAXB.setEnabled(false);
+                jButtonEjecutar.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jMenuItemAbrirDOMActionPerformed
@@ -331,6 +386,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jButtonGuardarDOM.setEnabled(false);
                 jButtonModificarDOM.setEnabled(false);
                 jButtonMostrarJAXB.setEnabled(false);
+                jButtonEjecutar.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jMenuItemAbrirSAXActionPerformed
@@ -365,6 +421,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String salida = gesJAXB.recorrerJAXB();
         jTextAreaMostrado.setText(salida);
     }//GEN-LAST:event_jButtonMostrarJAXBActionPerformed
+
+    private void jMenuItemAbrirXPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAbrirXPathActionPerformed
+        if(gesXpath.abrir_XML(dialogoSeleccionarFichero()) == -1){
+            jLabelMensaje.setText("Error al crear el objeto DOM");
+            jButtonEjecutar.setEnabled(false);
+        }else{
+            jLabelMensaje.setText("DOM creado con éxito");
+            jButtonEjecutar.setEnabled(true);
+        }
+    }//GEN-LAST:event_jMenuItemAbrirXPathActionPerformed
+
+    private void jButtonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEjecutarActionPerformed
+        String salida;
+        salida = gesXpath.ejecutarXPath(this.jTextConsultaXPath.getText());
+        this.jTextSalidaXPath.setText(salida);
+    }//GEN-LAST:event_jButtonEjecutarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -403,6 +475,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAñadirDOM;
+    private javax.swing.JButton jButtonEjecutar;
     private javax.swing.JButton jButtonGuardarDOM;
     private javax.swing.JButton jButtonModificarDOM;
     private javax.swing.JButton jButtonMostrarDOM;
@@ -414,18 +487,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelTituloAntiguo;
     private javax.swing.JLabel jLabelTituloNuevo;
+    private javax.swing.JLabel jLabelXPath;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuFicherosXML;
     private javax.swing.JMenuItem jMenuItemAbrirDOM;
     private javax.swing.JMenuItem jMenuItemAbrirJAXB;
     private javax.swing.JMenuItem jMenuItemAbrirSAX;
+    private javax.swing.JMenuItem jMenuItemAbrirXPath;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextAreaMostrado;
+    private javax.swing.JTextArea jTextConsultaXPath;
     private javax.swing.JTextField jTextFieldAutor;
     private javax.swing.JTextField jTextFieldPublicado;
     private javax.swing.JTextField jTextFieldTitulo;
     private javax.swing.JTextField jTextFieldTituloAntiguo;
     private javax.swing.JTextField jTextFieldTituloNuevo;
+    private javax.swing.JTextArea jTextSalidaXPath;
     // End of variables declaration//GEN-END:variables
 
     private File dialogoSeleccionarFichero() {
